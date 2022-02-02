@@ -1,6 +1,58 @@
 #include <bits/stdc++.h>
 using namespace std;
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        deque<int> deck;
+        vector<int> output;
+        int i = 0;
+        for(;i<k;i++)
+        {
+            while(deck.empty()!=true && nums[i]>nums[deck.back()] )
+                deck.pop_back();
+            deck.push_back(i);
+        }
+        for(;i<nums.size();i++)
+        {
+            output.push_back(nums[deck.front()]);
+            //set up new deck values
+            if(deck.front()<=i-k)
+                deck.pop_front();
+            while(deck.empty()!=true &&nums[i]>nums[deck.back()] )
+                deck.pop_back();
+            deck.push_back(i);
+        }
+        output.push_back(nums[deck.front()]);
+        return output;
+    }
+};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
@@ -37,4 +89,4 @@ public:
         output.push_back(nums[deck.front()]);
         return output;
     }
-};
+};*/
