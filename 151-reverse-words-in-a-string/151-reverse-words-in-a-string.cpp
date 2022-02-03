@@ -4,7 +4,7 @@ using namespace std;
 class Solution {
 public:
     string reverseWords(string s) {
-        deque <string> deck;
+        string deck;
         int start=-1;
         int end = -1;
         for(int i = 0;i<s.length();i++)
@@ -31,23 +31,23 @@ public:
             
             if(start != -1 && end != -1)
             {
-                char tmp[100];
+                string tmp="";
                 cout <<"Pushing string starting at "<< start <<" to "<<end<<"\n";
                 int idx = 0;
                 for(int i = start;i<=end;i++)
                 {
-                    tmp[idx] = s[i];
-                    idx++;
+                    tmp+=s[i];
                 }
-                tmp[idx] = '\0';
+                //tmp[idx] = '\0';
                 cout <<"Pushing string "<<tmp <<"\n";
-                deck.push_front(tmp);
-                deck.push_front(" ");
+                deck = " "+ tmp + deck;
+                //deck.push_front(" ");
                 start = -1;
                 end = -1;
             }
         }
-        string out;
+        return deck.erase(0,1);
+        /*string out;
         //popped extra space
         deck.pop_front();
         while (deck.empty()!=true)
@@ -55,6 +55,6 @@ public:
             out.append(deck.front());
             deck.pop_front();
         }
-        return out;
+        return out;*/
     }
 };
