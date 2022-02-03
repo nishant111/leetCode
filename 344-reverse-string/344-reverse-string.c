@@ -1,9 +1,9 @@
 
 void swap(char *arr, int left, int right)
 {
-    arr[left] = arr[left] + arr[right];
-    arr[right] = arr[left] - arr[right];
-    arr[left] = arr[left] - arr[right];
+    arr[left] = arr[left] ^ arr[right];
+    arr[right] = arr[left] ^ arr[right];
+    arr[left] = arr[left] ^ arr[right];
 }
 
 void reverseString(char* s, int sSize){
