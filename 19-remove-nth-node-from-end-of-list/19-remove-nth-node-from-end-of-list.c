@@ -30,21 +30,12 @@ struct ListNode* removeNthFromEnd(struct ListNode* head, int n){
     // now tempLeft points to nth node from behind
     if(tempRight->next == NULL && i==n-1)
     {
-        //boundary case
+        /* Boundary case
+        * Ex [1,2,3] n = 3
+        */
         return tempLeft->next;
     }
-    if(tempLeft->next == tempRight &&n==1)
-    {
-        //boundary case
-        free(tempRight);
-        tempLeft->next = NULL ;  
-        return head;
-    }
-    else if (tempLeft->next == tempRight &&n>1)
-    {
-        //boundary case
-        return tempRight;
-    }
+    
     //generic case
     struct ListNode *ptr=tempLeft->next;
     tempLeft->next = tempLeft->next->next;
