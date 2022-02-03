@@ -5,10 +5,9 @@
  *     struct ListNode *next;
  * };
  */
-
-
+/*
 bool isPalindrome(struct ListNode* head){
-    /* try reverssing the linked list and then compare to reduce the memory requirements */
+    \/* try reverssing the linked list and then compare to reduce the memory requirements *\/
     
     struct ListNode * temp = head;
     int size = sizeof(int);
@@ -37,4 +36,49 @@ bool isPalindrome(struct ListNode* head){
     }
     return true;
 
+}*/
+
+typedef struct ListNode node;
+
+node *reverse(node *head)
+{
+    node *curr = head;
+    node *prev = NULL;
+    node *nxt=NULL;
+    while (curr!= NULL)
+    {
+        nxt = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nxt;
+    }
+    return prev;
+}
+
+bool isPalindrome(struct ListNode* head){
+    //find middle
+    if(head == NULL || head->next ==NULL) return true;
+    node *slow = head;
+    node *fast = head;
+    while(fast!=NULL && fast -> next !=NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    node *temp=head;
+    while(temp->next != slow)
+    {
+        temp = temp->next;
+    }
+    temp = reverse(slow);
+    node *origTemp = temp;
+    node *newHead = head;
+    while(temp !=NULL && newHead!= origTemp)
+    {
+        if(newHead->val != temp->val)
+            return false;
+        newHead = newHead->next;
+        temp = temp->next;
+    }
+    return true;
 }
