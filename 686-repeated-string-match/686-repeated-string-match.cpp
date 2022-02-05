@@ -4,7 +4,7 @@ public:
     int repeatedStringMatch(string a, string b) {
         int count = 0;
         string temp="";
-        while(temp.length()<=a.length() + b.length() )
+        while(temp.length()< (b.length()+a.length()) )
         {
             if(temp.find(b) < temp.length())
             {
