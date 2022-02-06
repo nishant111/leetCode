@@ -22,7 +22,22 @@ public:
     vector<int> preorderTraversal(TreeNode* root) 
     {
         vector<int> ans;
-        preOrder(root, ans);
+        //preOrder(root, ans);
+        /* Iterative soln */
+        TreeNode *curr = root;
+        stack <TreeNode *> st;
+        while(curr || st.empty()!=true)
+        {
+            while(curr!=NULL)
+            {
+                ans.push_back(curr->val);
+                st.push(curr);
+                curr = curr->left;
+            }
+            //ans.push_back(st.top()->val);
+            curr = st.top()->right;
+            st.pop();
+        }
         return ans;
     }
 };
