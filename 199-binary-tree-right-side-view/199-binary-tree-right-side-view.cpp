@@ -9,9 +9,51 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+#include <bits/stdc++.h>
+using namespace std;
 class Solution {
 public:
-    //doing 
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> ans;
+        if(root == NULL) return ans;
+        TreeNode * curr = root;
+        queue <TreeNode *> q;
+        q.push(root);
+        ans.push_back(q.back()->val);
+        while(q.empty()!=true)
+        {
+            int size = q.size();
+            int pushCount = 0;
+            for(int j = 0;j<size;j++)
+            {
+                //TreeNode *tmp;
+                curr = q.front();
+                q.pop();
+                if(curr->left)
+                {
+                    q.push(curr -> left);
+                    pushCount++;
+                }
+                if(curr->right)
+                {
+                    q.push(curr ->right);
+                    pushCount++;
+                }
+            }
+            if(pushCount>0)
+                ans.push_back(q.back()->val);
+        }
+        return ans;
+    }
+};
+
+
+
+
+/*
+class Solution {
+public:
+    //doing  recurssion
     void dfs(TreeNode *root , vector<int> &ans, int level)
     {
         if(root == NULL)
@@ -29,3 +71,4 @@ public:
     }
    
 };
+*/
