@@ -125,7 +125,8 @@ struct Node
     }
 };
  */
-
+#include <bits/stdc++.h>
+using namespace std;
 void dfs(Node *root, vector<int> &ans, int level)
 {
     if(root == NULL) return;
@@ -140,6 +141,36 @@ vector<int> leftView(Node *root)
 {
    // Your code here
    vector<int> ans;
-   dfs(root, ans, 0);
+   if(root == NULL) return ans;
+   queue <Node*> q;
+   /* Iterative Solution */
+   Node *curr = root;
+   q.push(curr);
+   ans.push_back(curr->data);
+   while(q.empty()!=true)
+   {
+       int size = q.size();
+       int pushC = 0;
+       for(int i =0 ;i<size;i++)
+       {    
+            curr = q.front();
+            q.pop();
+            if(curr->right)
+            {
+                q.push(curr->right);
+                pushC++;
+            }
+            if(curr->left)
+            {
+                q.push(curr->left);
+                pushC++;
+            }
+       }
+       if(pushC>0)
+            ans.push_back(q.back()->data);
+   }
+   return ans;
+   
+   //dfs(root, ans, 0);
    return ans;
 }
