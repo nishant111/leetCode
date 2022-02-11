@@ -10,7 +10,45 @@
  * };
  */
 
-int MAX(int a,int b,int c) 
+int max(int a,int b) 
+{           
+    return a>=b?a:b;
+}
+
+class Solution {
+public:
+    int dfs(TreeNode *root, int &maxi)
+    {
+        if(root == NULL) return 0;
+        int left = max(0,dfs(root->left, maxi));
+        int right = max(0,dfs(root->right, maxi));
+        //save max with curve/split in global var
+        //int tmp = max(, root->val);
+        maxi = max(left+right+(root->val), maxi);
+        //return without curve/split;
+        int tmp = max(left,right);
+        return (tmp + root->val);
+        
+    }
+    int maxPathSum(TreeNode* root) {
+         if(root == NULL) return 0;
+        if(root->left == NULL && root->right == NULL) return root->val;
+        int maxi = INT_MIN;
+        int rval = dfs(root, maxi);
+        if(rval>maxi) return rval;
+        return maxi;
+    }
+};
+
+
+
+
+
+
+
+
+
+/*int MAX(int a,int b,int c) 
 {           if(a>=b && a>=c ) 
             return a;                
             else if(b>=a && b>=c ) 
@@ -49,4 +87,4 @@ public:
         if(ans > maxYet) return ans;
         return maxYet;
     }
-};
+};*/
