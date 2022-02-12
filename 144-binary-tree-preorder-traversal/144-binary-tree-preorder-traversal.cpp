@@ -23,7 +23,42 @@ public:
     {
         vector<int> ans;
         //preOrder(root, ans);
-        /* Iterative soln */
+        /* Morris O(N) time and O(1) space , credits : striver */
+        
+        TreeNode *curr = root;
+        while(curr !=NULL)
+        {
+            if(curr -> left == NULL)
+            {
+                ans.push_back(curr->val);
+                curr = curr->right;
+            }
+            else if(curr -> left !=NULL)
+            {
+                //ans.push_back(curr->val);
+                TreeNode *tmp = curr->left;
+                while(tmp->right!=NULL && tmp->right !=curr)
+                {
+                    tmp = tmp->right;
+                }
+                if(tmp->right == NULL)
+                {
+                    //set thread;
+                    tmp->right = curr;
+                    ans.push_back(curr->val);
+                    // move curr
+                    curr = curr->left;
+                }
+                else if(tmp->right == curr)
+                {
+                    tmp->right = NULL;
+                    curr = curr->right;
+                }
+            }
+        }
+        return ans;
+        
+        /* Iterative soln 
         TreeNode *curr = root;
         stack <TreeNode *> st;
         while(curr || st.empty()!=true)
@@ -38,6 +73,6 @@ public:
             curr = st.top()->right;
             st.pop();
         }
-        return ans;
+        return ans;*/
     }
 };
