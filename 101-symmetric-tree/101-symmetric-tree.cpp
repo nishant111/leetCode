@@ -13,9 +13,7 @@ class Solution {
 public:
     bool dfs(TreeNode *root1, TreeNode *root2)
     {
-        if(root1 == NULL && root2 == NULL) return true;
-        else if(root1 == NULL && root2 !=NULL) return false;
-        else if(root2 == NULL && root1 !=NULL) return false;
+        if(root1 == NULL || root2 == NULL) return root1==root2;
         if(root1->val!=root2->val) return false;
         TreeNode *root1l = root1->left;
         TreeNode *root2r =root2->right;
