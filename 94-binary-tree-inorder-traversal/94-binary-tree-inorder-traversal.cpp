@@ -21,8 +21,46 @@ public:
     }
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> ans;
+        
+        /* Morris traversal O(1) space and O(N) time */
+        
+        TreeNode * curr = root;
+        while(curr!=NULL)
+        {
+            if(curr->left)
+            {
+                TreeNode* tmp = curr;
+                tmp = curr->left;
+                while(tmp->right!=NULL && tmp->right!=curr)
+                {
+                    tmp = tmp->right;
+                }
+                if(tmp->right == NULL)
+                {  
+                    tmp ->right = curr;
+                    curr = curr->left;
+                }
+                else if(tmp->right == curr)
+                {
+                    tmp->right = NULL;
+                    ans.push_back(curr->val);
+                    cout <<curr->val<<" ";
+                    curr = curr->right;
+                }
+                
+            }
+            else if(curr -> left == NULL)
+            {
+                ans.push_back(curr->val);
+                cout <<curr->val<<" ";
+                curr = curr ->right;
+            }
+        }
+        return ans;
+        
+        
         //dfs(root, ans);
-        /* Iterative solution */
+        /* Iterative solution 
         TreeNode *curr = root;
         stack <TreeNode *> st;
         while(curr!=NULL ||st.empty()!= true)
@@ -36,6 +74,6 @@ public:
             curr = st.top()->right;
             st.pop();
         }
-        return ans;
+        return ans;*/
     }
 };
