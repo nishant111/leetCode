@@ -19,7 +19,7 @@ public:
         TreeNode *root2r =root2->right;
         TreeNode *root1r = root1->right;
         TreeNode *root2l = root2->left;
-        return (dfs(root1l, root2r) && dfs(root1r, root2l) );
+        return (dfs(root1l, root2r) & dfs(root1r, root2l) );
     }
     bool isSymmetric(TreeNode* root) {
        return (dfs(root->left, root->right));
