@@ -9,6 +9,30 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    bool dfs(TreeNode *root, long int l, long int r)
+    {
+        if(root == NULL) return true;
+        
+        if(root ->val <= l || root->val >= r) return false; //Out of Bounds
+        //Check recursively
+        return(dfs(root->left, l, root->val) &&
+               dfs(root->right, root->val, r));
+    }
+    bool isValidBST(TreeNode* root) {
+        return (dfs(root, LONG_MIN, LONG_MAX));
+    }
+};
+
+
+
+
+/*
+Too much traversal on each step
 class Solution {
 public:
     // sub means subtree
@@ -41,3 +65,4 @@ public:
         return dfs(root);
     }
 };
+*/
