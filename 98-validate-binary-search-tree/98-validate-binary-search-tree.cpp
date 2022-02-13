@@ -14,7 +14,7 @@
 using namespace std;
 class Solution {
 public:
-    bool dfs(TreeNode *root, long int l, long int r)
+    bool dfs(TreeNode *root, long l, long r)
     {
         if(root == NULL) return true;
         
