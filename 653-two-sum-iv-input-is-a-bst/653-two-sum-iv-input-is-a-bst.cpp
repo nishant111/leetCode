@@ -12,7 +12,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/* can be done using BST Iterator concept (Leetcode 173) */
+/* 1. can be done using BST Iterator concept (Leetcode 173) 
+   2. can be done using inorder(morris is effecient) traversal then two pointer approach for inorder array*/
 class Solution {
 public:
     stack<TreeNode*> stLeft; // ascending stack
@@ -103,7 +104,8 @@ public:
                 right = nextDescending();
                 cout<<"right is "<<right<<"\n";
             }
-            else{
+            else
+            {
                 if(left != right)
                     return true;
                 if(left == right)
