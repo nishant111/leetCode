@@ -9,11 +9,75 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
+/* can be done using BST Iterator concept (Leetcode 173) */
 class Solution {
 public:
+    stack<TreeNode*> stLeft; // ascending stack
+    stack<TreeNode *> stRight; // descending stack
+    void iteratorLeft(TreeNode *root)
+    {
+        //creates ascending stack
+        TreeNode *curr = root;
+        while(curr!=NULL)
+        {
+            stLeft.push(curr);
+            curr = curr->left;
+        }
+    }
+    void iteratorRight(TreeNode *root)
+    {
+        //creates descending stack
+        TreeNode* curr = root;
+        while(curr!=NULL)
+        {
+            stRight.push(curr);
+            curr = curr->right;
+        }
+    }
+    int nextAscending()
+    {
+        TreeNode *curr = stLeft.top();
+        int rtval = curr->val;
+        if(curr->right == NULL)
+        {
+            stLeft.pop();
+        }
+        else if(curr->right !=NULL)
+        {
+            stLeft.pop();
+            curr = curr -> right;
+            while(curr!=NULL)
+            {
+                stLeft.push(curr);
+                curr = curr->left;
+            }
+            
+        }
+        return rtval;
+    }
+    int nextDescending()
+    {
+        TreeNode * curr = stRight.top();
+        int rtval = curr->val;
+        if(curr ->left == NULL)
+        {
+            stRight.pop();
+        }
+        else if(curr->left!=NULL)
+        {
+            stRight.pop();
+            curr = curr->left;
+            while(curr!=NULL)
+            {
+                stRight.push(curr);
+                curr = curr->right;
+            }
+        }
+        return rtval;
+    } 
     void dfs(TreeNode *root, vector<int> &inorder)
     {
         if(root== NULL) return;
@@ -22,7 +86,34 @@ public:
         dfs(root->right, inorder);
     }
     bool findTarget(TreeNode* root, int k) {
-        vector<int> inorder;
+        
+        iteratorLeft(root);
+        iteratorRight(root);
+        int left = nextAscending();
+        int right = nextDescending();
+        while(stLeft.empty()!=true && stRight.empty()!= true)
+        {
+            if(left + right < k)
+            {
+                left = nextAscending();
+                cout<<"left is "<<left<<"\n";
+            }
+            else if(left + right > k)
+            {
+                right = nextDescending();
+                cout<<"right is "<<right<<"\n";
+            }
+            else{
+                if(left != right)
+                    return true;
+                if(left == right)
+                    return false;
+            }
+        }
+        return false;
+        
+        
+        /*vector<int> inorder;
         dfs(root, inorder);
         int left = 0;
         int right = inorder.size()-1;
@@ -39,6 +130,6 @@ public:
             else
                 return true;
         }
-        return false;
+        return false;*/
     }
 };
