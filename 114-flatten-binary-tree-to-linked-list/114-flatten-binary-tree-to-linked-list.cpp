@@ -10,9 +10,31 @@
  * };
  */
 
-#include<bits/stdc++.h>
-using namespace std;
 
+class Solution {
+public:
+    void dfs(TreeNode * root, TreeNode **next)
+    {
+        if(root == NULL) return;
+        dfs(root->right, next);
+        dfs(root->left, next);
+        root-> right = *next;
+        root->left = NULL;
+        *next = root;
+        return;
+    }
+    void flatten(TreeNode* root) {
+        TreeNode * next = NULL;
+        dfs(root, &next);
+    }
+};
+
+
+
+/*#include<bits/stdc++.h>
+using namespace std;
+\/* O(N) run time
+   O(N) recursive space *\/
 class Solution {
 public:
     void dfs(TreeNode *root, TreeNode **next){
@@ -33,7 +55,7 @@ public:
     }
 };
 
-
+*/
 
 /*
 O(n) time
