@@ -2,7 +2,7 @@ class Solution {
 public:
     void dfs(vector<vector<int>>& image, int sr, int sc, int newColor, int origColor)
     {
-        if(sr < 0 || sr >= image.size() || sc < 0 || sc >= image[0].size() || image[sr][sc] == newColor)
+        if(sr < 0 || sr >= image.size() || sc < 0 || sc >= image[0].size()) //|| image[sr][sc] == newColor)
             return;
         else if(image[sr][sc] == origColor )
         {
@@ -23,7 +23,8 @@ public:
                 imageCopy[i][j] = image[i][j];
             }
         }*/
-        dfs(image, sr, sc, newColor, image[sr][sc]);
+        if(image[sr][sc]!=newColor)
+          dfs(image, sr, sc, newColor, image[sr][sc]);
         return image;
     }
 };
