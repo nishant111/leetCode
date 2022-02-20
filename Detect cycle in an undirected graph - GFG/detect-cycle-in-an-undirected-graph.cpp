@@ -25,6 +25,33 @@ class Solution {
         }
         return false;
     }
+    bool checkCycleBfs( vector<int> adj[] , vector<bool> &visited, 
+                        int i, int parent)
+    {
+        queue <pair<int, int>> q;
+        q.push({i, parent});
+        visited[i] = true;
+        while(q.empty()!=true)
+        {
+            int curr = q.front().first;
+            int parent = q.front().second;
+            q.pop();
+            for(auto it: adj[curr])
+            {
+                if(visited[it] != true)
+                {
+                    q.push({it, curr});
+                    visited[it] = true;
+                }
+                else if(visited[it]==true &&
+                        parent != it )
+                {
+                    return true;   
+                }
+            }
+        }
+        return false;
+    }
     // Function to detect cycle in an undirected graph.
     bool isCycle(int V, vector<int> adj[]) {
         //initialize vector with size V and all value as false
@@ -34,7 +61,7 @@ class Solution {
             if(!visited[i])
             {
                 // parent passed initially is invalid
-                if(checkCycleDfs(adj, visited ,i, -1))
+                if(checkCycleBfs(adj, visited ,i, -1))
                     return true;
             }
         }
