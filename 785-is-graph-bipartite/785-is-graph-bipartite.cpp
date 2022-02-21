@@ -65,6 +65,30 @@ public:
         
     }
     
+    bool dfsColoring(vector<vector<int>>& graph, 
+                    vector<int> &color, int curr, int parentColor)
+    {
+        if(color[curr] == -1)
+        {
+            color[curr] = !parentColor;
+            for(auto it:graph[curr])
+            {
+                if(!dfsColoring(graph, color, it, !parentColor))
+                    return false;
+            }
+        }
+        else
+        {
+            if(color[curr]!= !parentColor)
+            {
+                return false;
+            }
+
+        }
+        return true;
+        
+    }
+    
     bool isBipartite(vector<vector<int>>& graph) {
         vector<bool> visited(graph.size(), false);
         vector<bool> dfsvisited(graph.size(), false);
@@ -78,8 +102,10 @@ public:
             {
                 cout <<"starting point "<<i<<"\n";
                 //if(dfsFindOddCycle(graph, visited, dfsvisited, i, 0, -1))
-                if(!bfsColoring(graph, visited, color, i))
-                    return false; //means coloring not possible
+                //if(!bfsColoring(graph, visited, color, i))
+                //    return false; //means coloring not possible
+                if(!dfsColoring(graph, color, i, 1))
+                    return false;
                 //visited[i] = true;
             }
         }
