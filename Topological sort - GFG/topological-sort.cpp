@@ -6,8 +6,7 @@ using namespace std;
 class Solution
 {
 	public:
-	//Function to return list containing vertices in Topological order. 
-	vector<int> topoSort(int V, vector<int> adj[]) 
+	void topoSortBfs(int V, vector<int> adj[], vector<int> &topo)
 	{
 	    vector <int> indegree(V, 0);
 	    for(int i = 0;i<V;i++)
@@ -17,7 +16,6 @@ class Solution
 	    }
 	    
 	    queue<int> q;
-	    vector<int> topo;
 	    for(int i = 0;i<V;i++)
 	    {
 	        //cout <<i <<" indegree is "<<indegree[i] << "\n";
@@ -39,6 +37,41 @@ class Solution
 	            }
 	        }
 	    }
+	}
+	
+	void topoSortDfs(vector<int> adj[], vector<bool> &visited, 
+	                 stack<int> &st, int curr)
+	{
+	    visited[curr] = true;
+	    for(auto it:adj[curr])
+	    {
+	        if(visited[it]!=true)
+	            topoSortDfs(adj, visited, st, it);
+	    }
+	    st.push(curr);
+	}
+	
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    vector<int> topo;
+	    //topoSortBfs(V, adj, topo);
+	    vector<bool> visited(V, false);
+	    stack<int> st;
+	    for(int i = 0;i<V;i++)
+	    {
+	        if(visited[i]!=true)
+	        {
+	            topoSortDfs(adj, visited, st, i);
+	        }
+	    }
+	    
+	    while(st.empty()!=true)
+	    {
+	        topo.push_back(st.top());
+	        st.pop();
+	    }
+	    
 	    return topo;
 	}
 };
