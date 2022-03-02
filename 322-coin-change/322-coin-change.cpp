@@ -1,4 +1,58 @@
 class Solution {
+public:
+    int dfs(vector<int> &coins,  int amount, vector<int> &dp)
+    {
+        if(amount == 0) return 0;
+        if(dp[amount] != -1) return dp[amount];
+        int ans = INT_MAX;
+        
+        for(auto coin : coins)
+        {
+            if(amount - coin >= 0)
+                ans = min (ans + 0LL, dfs(coins,amount-coin, dp)+1LL);
+        }
+        return dp[amount] = ans;
+    }
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> dp(amount + 1, -1);
+        int tmp = dfs(coins, amount, dp);
+        if(tmp == INT_MAX) return -1;
+        return tmp;
+        
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*class Solution {
     
 public:
    
@@ -27,7 +81,7 @@ public:
         else return tmp;
         //return (cnt==INT_MAX?-1:cnt);
     }
-};
+}; */
 
 
 
