@@ -4,11 +4,10 @@ public:
     {
         
         if(sum1 == 0) return true;
-        if(curr<0 ) return false;
+        if(curr<0 || sum1<0 ) return false;
         if(dp[curr][sum1]!=-1) return dp[curr][sum1];
         int pick = false;
-        if(sum1-nums[curr]>=0)
-            pick = dfs(nums, curr-1, sum1-nums[curr], dp);
+        pick = dfs(nums, curr-1, sum1-nums[curr], dp);
         int nonpick = dfs(nums, curr-1,sum1, dp);
         bool rval;
         if(pick || nonpick) rval = true;
