@@ -1,57 +1,25 @@
 class Solution {
 public:
-    int dfs(vector<int> &coins,  int amount, vector<int> &dp)
+    
+    long long dfs(vector<int> &coins,  int amount, int curr, vector<vector<int>>& dp)
     {
         if(amount == 0) return 0;
-        if(dp[amount] != -1) return dp[amount];
-        int ans = INT_MAX;
-        
-        for(auto coin : coins)
-        {
-            if(amount - coin >= 0)
-                ans = min (ans + 0LL, dfs(coins,amount-coin, dp)+1LL);
-        }
-        return dp[amount] = ans;
+        if(curr<0) return INT_MAX;
+        if(dp[amount][curr]!=-1) return dp[amount][curr];
+        long long nonpick = dfs(coins, amount, curr-1, dp);
+        long long pick = INT_MAX;
+        if(amount - coins[curr] >= 0)
+            pick = 1+dfs(coins, amount-coins[curr], curr, dp);
+        return dp[amount][curr] = min(nonpick , pick);
     }
     int coinChange(vector<int>& coins, int amount) {
-        vector<int> dp(amount + 1, -1);
-        int tmp = dfs(coins, amount, dp);
+        vector<vector<int>> dp (amount+1, vector<int>(coins.size()+1, -1));
+        long long tmp = dfs(coins, amount, coins.size()-1, dp);
         if(tmp == INT_MAX) return -1;
         return tmp;
         
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*class Solution {
     
 public:
