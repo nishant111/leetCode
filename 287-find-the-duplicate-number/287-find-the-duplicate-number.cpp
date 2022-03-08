@@ -11,7 +11,8 @@ public:
                     nums[-1 * nums[i]] = nums[-1 * nums[i]] * -1;
             }
             else{
-                if(nums[nums[i]]<0) return nums[i];
+                if(nums[nums[i]]<0) 
+                    return nums[i];
                 nums[nums[i]] = nums[nums[i]] * -1;
             }
         }
