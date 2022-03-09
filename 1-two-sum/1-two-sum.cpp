@@ -4,11 +4,7 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         vector<int> ans;
-        unordered_map<int,int> m;
-        for(int i = 0;i<nums.size();i++)
-        {
-            m.insert({nums[i], i});
-        }
+        unordered_map<int,int> m; 
         int left = 0;
         int right = nums.size()-1;
         for(int i = 0;i<nums.size();i++)
@@ -20,6 +16,9 @@ public:
                 ans.push_back(m[find]);
                 break;
             }
+            // if not found insert in the hash map, it will return
+            // correct index later on.
+            m.insert({nums[i], i});
         }
         return ans;
     }
