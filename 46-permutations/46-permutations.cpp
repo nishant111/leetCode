@@ -6,7 +6,7 @@ public:
         nums[left] = nums[right];
         nums[right] = tmp;
     }
-    void dfs(vector<int> &nums, vector<vector<int>> &ans, int curr)
+    void dfs(vector<int> nums, vector<vector<int>> &ans, int curr)
     {
         if(curr >= nums.size())
         {
@@ -18,7 +18,7 @@ public:
         {
             swap(nums, i, curr);
             dfs(nums,  ans, curr+1);
-            swap(nums, i, curr);
+            //swap(nums, i, curr);
         }
     }
     vector<vector<int>> permute(vector<int>& nums) {
