@@ -16,7 +16,23 @@
  * Hence, we will use that */
 class Solution {
 public:
+    TreeNode* dfs(TreeNode *root, int &count,int k)
+    {
+        if(root == NULL) return NULL;
+        TreeNode* left = dfs(root->left, count, k);
+        if(left)
+            return left;
+        count++; 
+        if(count == k)
+            return root;
+        TreeNode* right = dfs(root->right, count, k);
+        if(right)
+            return right;
+        return NULL;
+    }
     int kthSmallest(TreeNode* root, int k) {
+        int count1 = 0;
+        return dfs(root, count1, k) -> val;
         TreeNode * curr = root;
         int ans;
         int count = 0;
@@ -29,7 +45,7 @@ public:
                 if(count == k)
                 {
                     cout <<"Found result ";
-                    // reset synthetic thread
+                    // still need to reset synthetic thread , cant return
                     ans= curr->val;
                 }
                 curr = curr -> right;
