@@ -31,15 +31,7 @@ public:
             {
                 vote1--;
                 vote2--;
-                /*if(vote1 == 0){
-                    ans1 = nums[i];
-                    vote1++;
-                }
-                else if(vote2==0)
-                {
-                    ans2=nums[i];
-                    vote2++;
-                }*/
+                
             }
         }
         // iterate and find ans out of two possible ones.
