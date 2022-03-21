@@ -8,7 +8,6 @@ public:
         {
             if(prices[i]>prices[buy])
             {
-                sell = i;
                 int tmp = prices[i]-prices[buy];
                 profit = max(profit, tmp);
             }
