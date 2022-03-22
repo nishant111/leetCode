@@ -27,11 +27,8 @@ public:
             slow = slow->next;
             fast = fast->next;
         }
-        if(slow && slow->next)
-        {
+        
             slow -> next = slow -> next -> next;
-            
-        }
         return head;
        
     }
