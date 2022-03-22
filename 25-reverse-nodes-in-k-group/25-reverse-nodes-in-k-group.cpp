@@ -8,11 +8,13 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
 class Solution {
+    
 public:
+    int gcount = 0;
     ListNode *reverse(ListNode *curr, int k)
     {
-        
         ListNode *prev = NULL;
         ListNode *end;
         ListNode *next;
@@ -21,6 +23,7 @@ public:
         int nodecount=0;
         while(tmpcurr)
         {
+            gcount++;
             nodecount++;
             tmpcurr = tmpcurr->next;
             if(nodecount == k)
@@ -29,6 +32,7 @@ public:
         if(nodecount <k) return curr;
         while(curr)
         {
+            gcount++;
             if(count == 0) end = curr;
             next = curr->next;
             curr -> next = prev;
@@ -92,6 +96,9 @@ public:
     }
     ListNode* reverseKGroup(ListNode* head, int k) {
         ListNode * curr = head;
-        return reverse(curr, k);
+        ListNode * ans = reverse(curr, k);
+        
+        cout<<"count is" <<gcount;
+        return ans;
     }
 };
