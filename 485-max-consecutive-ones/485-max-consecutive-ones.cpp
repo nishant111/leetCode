@@ -8,14 +8,13 @@ public:
             if(nums[i] == 1)
             {
                 pCount++;
-                maxYet = max(pCount, maxYet);
             }
-            if(nums[i] == 0)
+            else
             {
-                //collect and decide on ans;
-                maxYet = max(pCount, maxYet);
                 pCount = 0;
             }
+            if(pCount>maxYet)
+                maxYet=pCount;
         }
         return maxYet;
     }
