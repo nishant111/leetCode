@@ -15,6 +15,12 @@ public:
         node -> next -> val = tmp;
     }
     void deleteNode(ListNode* node) {
+        node -> val = node->next->val;
+        ListNode * tmp = (node->next);
+        node->next = node->next->next;
+        delete(tmp);
+        
+        /*
         while(node->next->next!=NULL)
         {
             swap(node);
@@ -22,6 +28,6 @@ public:
             
         }
         swap(node);
-        node->next = NULL;
+        node->next = NULL;*/
     }
 };
