@@ -3,7 +3,8 @@ public:
     void dfs(vector<int> &cand, vector<int> &tmp,
             vector<vector<int>> &ans, int targ, int curr)
     {
-        if(targ <0 || curr >= cand.size()){
+        if(curr >= cand.size() && targ != 0) return;
+        if(targ <0 ){
             return;
         }
         else if(targ == 0){
