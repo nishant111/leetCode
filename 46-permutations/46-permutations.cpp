@@ -18,7 +18,7 @@ public:
         {
             swap(nums, i, curr);
             dfs(nums,  ans, curr+1);
-            //swap(nums, i, curr);
+            swap(nums, i, curr);
         }
     }
     vector<vector<int>> permute(vector<int>& nums) {
