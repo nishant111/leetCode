@@ -20,6 +20,35 @@ public:
         ans.push_back(root->val);
     }
     vector<int> postorderTraversal(TreeNode* root) {
+        stack<TreeNode*> st;
+        unordered_set<TreeNode*> visited;
+        //st.push(root);
+        vector<int> ans;
+        while(root||!st.empty())
+        {
+            if(root)
+            {
+                st.push(root);
+                root=root->left;
+            }
+            else{
+                TreeNode *tmp = st.top();
+                if(tmp->right && visited.find(tmp->right) == visited.end())
+                {
+                    root = tmp -> right;
+                    visited.insert(root);
+                }
+                else
+                {
+                    ans.push_back(tmp->val);
+                    st.pop();
+                    if(st.size()==0) break;
+                }
+            }
+        }
+        return ans;
+    }
+    vector<int> postorderTraversal2(TreeNode* root) {
         vector<int> ans;
         if(root == NULL) return ans;
         //dfs(root, ans);
