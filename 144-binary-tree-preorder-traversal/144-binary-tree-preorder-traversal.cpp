@@ -24,7 +24,7 @@ public:
         vector<int> ans;
         //preOrder(root, ans);
         /* Morris O(N) time and O(1) space , credits : striver */
-        
+        /*
         TreeNode *curr = root;
         while(curr !=NULL)
         {
@@ -56,8 +56,26 @@ public:
                 }
             }
         }
-        return ans;
+        return ans;*/
         
+        // iterative soln retry
+        stack<TreeNode*> st;
+        while(root || !st.empty())
+        {
+            if(root)
+            {
+                st.push(root);
+                ans.push_back(root->val);
+                root = root->left;
+            }
+            else
+            {
+                TreeNode* tmp = st.top();
+                st.pop();
+                root=tmp->right;
+            }
+        }
+        return ans;
         /* Iterative soln 
         TreeNode *curr = root;
         stack <TreeNode *> st;
