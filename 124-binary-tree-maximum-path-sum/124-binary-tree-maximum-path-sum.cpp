@@ -23,10 +23,10 @@ public:
         int left = max(0,dfs(root->left, maxi));
         int right = max(0,dfs(root->right, maxi));
         //save max with curve/split in global var
-        int tmp = max(left+right+(root->val), root->val);
-        maxi = max(tmp, maxi);
+        //int tmp = max(left+right+(root->val), root->val);
+        maxi = max(left+right+(root->val), maxi);
         //return without curve/split;
-        tmp = max(left,right);
+        int tmp = max(left,right);
         return (tmp + root->val);
         
     }
