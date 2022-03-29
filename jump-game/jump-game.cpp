@@ -18,6 +18,14 @@ public:
     }
     bool canJump(vector<int>& nums) {
        vector<int> dp(nums.size()+1, -1);
-       return dfs(nums, 0, dp);
+       //return dfs(nums, 0, dp);
+        int goal = nums.size()-1;
+        for(int i = nums.size()-2;i>=0;i--)
+        {
+            if(nums[i] + i >= goal)
+                goal = i;
+        }
+        if(goal == 0) return true;
+        return false;
     }
 };
