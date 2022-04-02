@@ -22,7 +22,7 @@ public:
         root->right = dfs(root->right, leaves);
         return root;
     }
-    vector<vector<int>> findLeaves(TreeNode* root) {
+    vector<vector<int>> findLeaves1(TreeNode* root) {
         vector<int> leaves;
         vector<vector<int>> ans;
         while(root)
@@ -33,4 +33,25 @@ public:
         }
         return ans;
     }
+    
+    int findAnsUsingHeights(TreeNode *root, vector<vector<int>> &ans)
+    {
+        if(root == NULL) return -1;
+        int lh = findAnsUsingHeights(root->left, ans);
+        int rh = findAnsUsingHeights(root->right, ans);
+        int currh = max(lh,rh) + 1;
+        if (currh >= ans.size())
+        {
+            ans.push_back({});
+        }
+        ans[currh].push_back(root->val);
+        return currh;
+    }
+    
+     vector<vector<int>> findLeaves(TreeNode* root) {
+         vector<vector<int>> ans;
+         if(root == NULL) return ans;
+         findAnsUsingHeights(root, ans);
+         return ans;
+     }
 };
