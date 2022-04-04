@@ -22,9 +22,9 @@ public:
                 string tmp="";
                 while(digit-->0)
                 {
-                    ans += decode;
+                    tmp += decode;
                 }
-                
+                ans += tmp;
             }
             else if(s[i]>='a' && s[i] <='z')
             {
