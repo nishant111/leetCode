@@ -28,10 +28,10 @@ public:
     int next() {
         TreeNode* curr = st.top();
         int rtval = curr->val;
+        st.pop();
         if(curr->right)
         {
             // there exists a right leg, need to push that into stack
-            st.pop();
             curr = curr->right;
             while(curr != NULL)
             {
@@ -39,11 +39,7 @@ public:
                 curr = curr->left;
             }
         }
-        else
-        {
-            // no right leg simply pop
-            st.pop();
-        }
+        
         return rtval;
     }
     
