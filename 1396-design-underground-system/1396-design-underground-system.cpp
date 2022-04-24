@@ -16,7 +16,7 @@ public:
         item checkIn;
         checkIn.startStation = stationName;
         checkIn.time = t;
-        idMap.insert({id, checkIn});
+        idMap[id] =  checkIn;
     }
     
     void checkOut(int id, string stationName, int t) {
@@ -25,7 +25,7 @@ public:
             int diff = t - idMap[id].time;
             string res =  idMap[id].startStation + '-' + stationName;
             timeMap[res].push_back(diff);
-            idMap.erase(id);
+            //idMap.erase(id);    // once user exists better not to hold his checkin details or update the last checkin data
         }
     }
     
