@@ -19,6 +19,69 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
+        if(root == NULL) return root;
+        Node *h = root;
+        h->next = NULL;
+        while(h!=NULL)
+        {
+            Node *prev = NULL;
+            Node *nlh = NULL;
+            while(h!=NULL)
+            {
+                if(h->left){
+                    if(prev == NULL)
+                    {
+                        prev = nlh = h->left;
+                    }
+                    else
+                    {
+                        prev->next = h->left;
+                        prev = prev ->next;
+                    }
+                }
+                if(h->right)
+                {
+                    if(prev==NULL)
+                    {
+                        prev = nlh = h->right;
+                    }
+                    else
+                    {
+                        prev -> next = h-> right;
+                        prev = prev->next;
+                    }
+                }
+                h = h->next;
+            }
+            h = nlh;
+            if(prev)
+                prev->next = NULL;
+        }
+        return root;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+O(n) | O(1)
+class Solution {
+public:
+    Node* connect(Node* root) {
         queue<Node *> q;
         if(root == NULL) return root;
         q.push(root);
@@ -43,3 +106,4 @@ public:
         return root;
     }
 };
+*/
