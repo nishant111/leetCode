@@ -11,6 +11,7 @@ class Solution {
                 
                 result[0] = existingNums.get(target - nums[i]);
                 result[1] = i;
+                break;
             } else {
                 existingNums.put(nums[i], i);
             }
