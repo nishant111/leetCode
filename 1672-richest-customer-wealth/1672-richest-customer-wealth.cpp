@@ -9,7 +9,8 @@ public:
             {
                 sum += accounts[i][j];
             }
-            maxi = max(maxi, sum);
+             if(sum > maxi)
+                maxi = (sum);
         }
         return maxi;
     }
