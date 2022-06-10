@@ -1,29 +1,24 @@
 class Solution {
 public:
-    // shrink or expand window based on elements in the unordered set.
     int lengthOfLongestSubstring(string s) {
-        unordered_set<char> st;
-        int maxLen = 0;
-        int count = 0;
-        int i = 0; int j = 0;
-        while(s[i]!='\0' && s[j]!='\0')
+        if(s.size()==0) return 0;
+        int l = 0;
+        int r = 0;
+        unordered_set <char> st;
+        int ans = INT_MIN;
+        while(r<s.size())
         {
-            if(st.find(s[j])==st.end())
+            if(st.find(s[r]) == st.end())
             {
-                //didnt find
-                st.insert(s[j]);
-                count++;
-                j++;
+                st.insert(s[r]);
+                ans = max(r-l+1, ans);
+                r++;
             }
-            else if(st.find(s[j]) != st.end())
+            else
             {
-                //found, will create duplicate start popping.
-                st.erase(s[i]);
-                count--;
-                i++;
+                st.erase(s[l++]);
             }
-            maxLen = max(count, maxLen);
         }
-        return maxLen;
+        return ans;
     }
 };
