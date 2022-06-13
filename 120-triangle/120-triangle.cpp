@@ -1,3 +1,55 @@
+/*class Solution {
+public:
+    //int dp[201][201];
+    int dfs(int r, int c,vector<vector<int>> triangle, vector<vector<int>> &dp)
+    {
+        // think of base case
+        if(r==triangle.size()-1)
+        {
+            return dp[r][c] = triangle[r][c];
+        }
+        if(dp[r][c]!=-1) return dp[r][c];
+        int ans = 0;
+        
+        ans = triangle[r][c] + min(dfs(r+1, c, triangle, dp), dfs(r+1, c+1, triangle, dp));
+        return dp[r][c] = ans;
+    }
+    
+    int minimumTotal(vector<vector<int>>& triangle) {
+        vector<vector<int>> dp(triangle.size(), vector<int>(triangle.size(), -1));
+        int ans =  dfs(0, 0, triangle, dp);
+        return ans;
+    }
+};
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution {
 public:
     int dfs(vector<vector<int>>& triangle, int row, int col, vector<vector<int>> &dp)
