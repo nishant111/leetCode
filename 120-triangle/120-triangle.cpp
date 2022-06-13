@@ -52,8 +52,10 @@ public:
 
 class Solution {
 public:
+    int count=0;
     int dfs(vector<vector<int>>& triangle, int row, int col, vector<vector<int>> &dp)
     {
+        count++;
         if(row == triangle.size()-1) return triangle[row][col];
         if(dp[row][col]!=-1) return dp[row][col];
         int down = triangle[row][col] + dfs(triangle, row+1,col,dp);
@@ -62,6 +64,8 @@ public:
     }
     int minimumTotal(vector<vector<int>>& triangle) {
         vector<vector<int>> dp(triangle.size(), vector<int>(triangle.size(), -1));
-        return dfs(triangle, 0 , 0,dp);   
+        int ans =  dfs(triangle, 0 , 0,dp);
+        cout << "count is"<<count;
+        return ans;
     }
 };
