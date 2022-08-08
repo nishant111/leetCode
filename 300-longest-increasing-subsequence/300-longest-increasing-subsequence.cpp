@@ -1,5 +1,11 @@
 class Solution {
 public:
+/*
+Without DP O(n^2)
+with DP O(n)
+
+
+*/
     int dfs(int curr, vector<int> &nums, vector<int> &lis)
     {
         if(curr==0) return 1;
