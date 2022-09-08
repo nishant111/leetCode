@@ -22,7 +22,7 @@ public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> ans;
         
-        /* Morris traversal O(1) space and O(N) time */
+        /* Morris traversal O(1) space and O(N) time Credits:striver */
         
         TreeNode * curr = root;
         while(curr!=NULL)
