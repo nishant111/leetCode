@@ -2,7 +2,8 @@ class Solution {
 public:
     /*
     Must go through below follow up answer:
-    https://leetcode.com/problems/toeplitz-matrix/discuss/516366/Python-Follow-Up-1-with-Explanation-and-Diagrams
+    https://leetcode.com/problems/toeplitz-matrix/discuss/516366/Python-Follow-Up-1-with-Explanation-and-Diagrams'=
+    https://leetcode.com/problems/toeplitz-matrix/discuss/271388/Java-Solution-for-Follow-Up-1-and-2
     */
     bool isToeplitzMatrix(vector<vector<int>>& matrix) {
         int r=matrix.size()-1;
