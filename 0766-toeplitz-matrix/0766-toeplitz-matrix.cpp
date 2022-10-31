@@ -1,5 +1,9 @@
 class Solution {
 public:
+    /*
+    Must go through below follow up answer:
+    https://leetcode.com/problems/toeplitz-matrix/discuss/516366/Python-Follow-Up-1-with-Explanation-and-Diagrams
+    */
     bool isToeplitzMatrix(vector<vector<int>>& matrix) {
         int r=matrix.size()-1;
         int c= 0;
