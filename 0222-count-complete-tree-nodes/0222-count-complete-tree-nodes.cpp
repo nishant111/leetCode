@@ -11,7 +11,11 @@
  */
 class Solution {
 public:
-    
+    /* count is always holding the current count, ans holds the overall count, try dry run for clarity,
+    Another approach would be to:
+    1.find left h and right h if ther are equal there are 
+    (2^left h) -1 nodes,
+    2.otherwise do dfs on left then right*/
     int dfs(TreeNode * root, int count, int &ans)
     {
         if(root -> left != NULL && root -> right == NULL)
