@@ -13,10 +13,10 @@ public:
         if(n==1) return 1;
         int l = 1;
         int r= n;
-        long long mid;
+        int mid;
         while(l<=r)
         {
-            mid = ((long)l+(long)r)/(long)2;
+            mid = l + (r-l)/2;
             if(guess(mid) == 0){
                 return mid;
             }
