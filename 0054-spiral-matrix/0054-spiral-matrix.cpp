@@ -19,7 +19,37 @@ public:
     }
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
         vector<int> ans;
-        dfs(matrix, 0, 0, ans, 'r');
+        //dfs(matrix, 0, 0, ans, 'r');
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int up = 0;
+        int down = matrix.size()-1;
+        int left = 0;
+        int right = matrix[0].size()-1;
+        while(ans.size()<m*n){
+            for(int i=left;i<=right;i++){
+                ans.push_back(matrix[up][i]);
+            }
+            for(int i=up+1;i<=down;i++){
+                ans.push_back(matrix[i][right]);
+            }
+            if(up!=down){
+                for(int i=right-1;i>=left;i--){
+                    ans.push_back(matrix[down][i]);
+                }
+            }
+            if(left!=right){
+            for(int i=down-1;i>up;i--){
+                ans.push_back(matrix[i][left]);
+            }
+            }
+            left++;
+            right--;
+            up++;
+            down--;
+        }
+
+
         return ans;
     }
 };
