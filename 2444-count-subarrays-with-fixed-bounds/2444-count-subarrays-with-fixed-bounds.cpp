@@ -1,7 +1,7 @@
 class Solution {
 public:
     long long countSubarrays(vector<int>& nums, int minK, int maxK) {
-        int leftBound = -1;
+        int badi = -1;
         int lastMin = -1;
         int lastMax = -1;
         long long ans = 0;
@@ -15,10 +15,10 @@ public:
 
             if(nums[i] >= minK && nums[i] <= maxK)
             {
-                ans += max(0,min(lastMin, lastMax)-leftBound);
+                ans += max(0,min(lastMin, lastMax)-badi);
             }
             else {
-                leftBound = i;
+                badi = i;
             }
 
         }
