@@ -5,12 +5,11 @@ public:
         int sum = 0;
         for(int i = 0;i<nums.size();i++){
             if(nums[i]%2 == 0){
-                nums[i] = 0;
-                
+                //nums[i] = 0;
+                bool f=true;
             }
             else{
-                nums[i] = 1;
-                sum += nums[i];
+                sum += 1;
                 //psum.push_back(sum);
             }
             psum.push_back(sum);
