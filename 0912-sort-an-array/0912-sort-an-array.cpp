@@ -1,45 +1,39 @@
 class Solution {
 public:
-    void merge(vector<int> & nums,vector<int> & left,vector<int> & right){
+    vector<int> merge(vector<int> &l, vector<int> &r){
         int li = 0;
         int ri = 0;
-        int ni = 0;
-        while(li<left.size() && ri<right.size())
-        {
-            if(left[li] <= right[ri]){
-                nums[ni++] = left[li++];
+        vector<int> ret;
+        while(li<l.size() | ri<r.size()){
+            if(li<l.size() && ri<r.size()){
+                if(l[li]<=r[ri]){
+                    ret.push_back(l[li++]);
+                }
+                else{
+                    ret.push_back(r[ri++]);
+                }
             }
-            else {
-                nums[ni++] = right[ri++];
+            else if(li<l.size()){
+                ret.push_back(l[li++]);
             }
-        }
-
-        if(li<left.size()){
-            while(li<left.size()){
-                nums[ni++] = left[li++];
-            }
-        }
-        else if(ri<left.size()){
-            while(ri<right.size()){
-                nums[ni++] = right[ri++];
+            else{
+                ret.push_back(r[ri++]);
             }
         }
-        return;
-
+        return ret;
     }
-    vector<int> ms(vector<int> & nums, int l, int r){
-        if(l==r)
-        {
-            return {nums[l]};
+    
+    vector<int> mergeSort(vector<int> &nums, int l, int r){
+        if(l==r){
+            return {nums[l]}; 
         }
         int mid = (l+r)/2;
-        vector<int> left = ms(nums, l, mid);
-        vector<int> right = ms(nums, mid+1, r);
-        vector<int> merged(left.size() + right.size());
-        merge(merged, left, right );
-        return merged;
+        vector<int> left = mergeSort(nums, l, mid);
+        vector<int> right = mergeSort(nums, mid+1, r);
+        return merge(left,right);
     }
+    
     vector<int> sortArray(vector<int>& nums) {
-        return ms(nums, 0, nums.size()-1);
+        return mergeSort(nums, 0, nums.size()-1);
     }
 };
